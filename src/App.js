@@ -6,8 +6,16 @@ export function App() {
   const [name, setName] = useState("Rohit");
 
   function handleClick() {
-    setName("Batman");
+    getData();
   }
+
+  useEffect(() => {
+    async function getData() {
+      const res = await fetch("https://rickandmortyapi.com/api/episode");
+      const data = await res.json();
+      setName(data);
+    }
+  });
 
   return (
     <div>
