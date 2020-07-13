@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "./Image";
+
 export function Card({ content }) {
   return (
     <div>
