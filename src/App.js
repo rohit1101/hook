@@ -5,6 +5,7 @@ import "./App.css";
 export function App() {
   const [currentState, setEpisodes] = useState([]);
   const [currentPage, setPage] = useState([]);
+  const [currentFilterState, setFilter] = useState([]);
 
   useEffect(() => {
     async function getData() {
@@ -36,6 +37,21 @@ export function App() {
     }
   }
 
+  function handleChange(e) {
+    // console.log(e.target.value);
+    if (e.target.value.trim()) {
+      const newState = currentState.filter((item) => {
+        // return item.name.toLowerCase().includes(e.target.value.toLowerCase());
+        if (item.name.toLowerCase().includes(e.target.value.toLowerCase())) {
+          return item;
+        }
+      });
+      console.log(newState);
+      setEpisodes(newState);
+      // console.log(currentFilterState);
+    }
+  }
+
   return (
     <div>
       <ul className="pagination">
@@ -52,7 +68,11 @@ export function App() {
       </ul>
       <label>
         Search Episode
-        <input type="text" />
+        <input
+          type="text"
+          placeholder="Enter episode Name"
+          onChange={handleChange}
+        />
       </label>
       <Card content={currentState} />
     </div>
