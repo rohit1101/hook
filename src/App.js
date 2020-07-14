@@ -5,7 +5,7 @@ import "./App.css";
 export function App() {
   const [currentState, setEpisodes] = useState([]);
   const [currentPage, setPage] = useState([]);
-  const [currentFilterState, setFilter] = useState([]);
+  // const [currentFilterState, setFilter] = useState([]);
 
   useEffect(() => {
     async function getData() {
@@ -38,17 +38,12 @@ export function App() {
   }
 
   function handleChange(e) {
-    // console.log(e.target.value);
     if (e.target.value.trim()) {
       const newState = currentState.filter((item) => {
-        // return item.name.toLowerCase().includes(e.target.value.toLowerCase());
-        if (item.name.toLowerCase().includes(e.target.value.toLowerCase())) {
-          return item;
-        }
+        return item.name.toLowerCase().includes(e.target.value.toLowerCase());
       });
       console.log(newState);
       setEpisodes(newState);
-      // console.log(currentFilterState);
     }
   }
 
