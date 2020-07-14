@@ -16,15 +16,18 @@ export function App() {
     getData();
   }, []);
 
-  async function handleClick(e) {
+  async function handleNextClick(e) {
     e.preventDefault();
     if (currentPage.next) {
       const res = await fetch(currentPage.next);
       const data = await res.json();
       setEpisodes(data.results);
       setPage(data.info);
-      console.log(data.info);
     }
+  }
+
+  async function handlePrevClick(e) {
+    e.preventDefault();
     if (currentPage.prev) {
       const res = await fetch(currentPage.prev);
       const data = await res.json();
@@ -37,16 +40,20 @@ export function App() {
     <div>
       <ul className="pagination">
         <li className="page-item">
-          <a className="page-link" href="#" onClick={handleClick}>
+          <a className="page-link" href="#" onClick={handlePrevClick}>
             Previous
           </a>
         </li>
         <li className="page-item">
-          <a className="page-link" href="#" onClick={handleClick}>
+          <a className="page-link" href="#" onClick={handleNextClick}>
             Next
           </a>
         </li>
       </ul>
+      <label>
+        Search Episode
+        <input type="text" />
+      </label>
       <Card content={currentState} />
     </div>
   );
