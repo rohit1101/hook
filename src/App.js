@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "./Card";
-import { getEpisode } from "rickmortyapi";
+
 import "./App.css";
 
 export function App() {
   const [currentState, setEpisodes] = useState([]);
   const [currentPage, setPage] = useState([]);
-  const [currentFilterState, setFilter] = useState([]);
   const [currentValue, setValue] = useState("");
 
   useEffect(() => {
@@ -41,11 +40,17 @@ export function App() {
 
   async function handleChange(e) {
     setValue(e.target.value);
-    if (e.target.value.trim()) {
-      const episode = await getEpisode({
-        name: e.target.value,
-      });
-      setFilter(episode.results);
+    if (currentValue) {
+      const episode = await fetch(
+        `https://rickandmortyapi.com/api/episode/?name=${e.target.value}`
+      );
+      const data = await episode.json();
+      setEpisodes(data.results);
+    }
+    if (currentValue === "") {
+      const res = await fetch("https://rickandmortyapi.com/api/episode");
+      const data = await res.json();
+      setEpisodes(data.results);
     }
   }
 
@@ -72,7 +77,8 @@ export function App() {
           value={currentValue}
         />
       </label>
-      <Card content={currentValue.length ? currentFilterState : currentState} />
+
+      <Card content={currentState} />
     </div>
   );
 }
