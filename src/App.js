@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "./Card";
+import { getEpisode } from "rickmortyapi";
 import "./App.css";
 
 export function App() {
@@ -37,12 +38,12 @@ export function App() {
     }
   }
 
-  function handleChange(e) {
+  async function handleChange(e) {
     if (e.target.value.trim()) {
-      const filState = currentState.filter((item) => {
-        return item.name.toLowerCase().includes(e.target.value.toLowerCase());
+      const episode = await getEpisode({
+        name: e.target.value,
       });
-      setEpisodes(filState);
+      setFilter(episode.results);
     }
   }
 
@@ -68,7 +69,9 @@ export function App() {
           onChange={handleChange}
         />
       </label>
-      <Card content={currentState} />
+      <Card
+        content={currentFilterState.length ? currentFilterState : currentState}
+      />
     </div>
   );
 }
