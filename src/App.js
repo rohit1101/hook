@@ -7,6 +7,7 @@ export function App() {
   const [currentState, setEpisodes] = useState([]);
   const [currentPage, setPage] = useState([]);
   const [currentFilterState, setFilter] = useState([]);
+  const [currentValue, setValue] = useState("");
 
   useEffect(() => {
     async function getData() {
@@ -39,6 +40,7 @@ export function App() {
   }
 
   async function handleChange(e) {
+    setValue(e.target.value);
     if (e.target.value.trim()) {
       const episode = await getEpisode({
         name: e.target.value,
@@ -67,11 +69,10 @@ export function App() {
           type="text"
           placeholder="Enter episode Name"
           onChange={handleChange}
+          value={currentValue}
         />
       </label>
-      <Card
-        content={currentFilterState.length ? currentFilterState : currentState}
-      />
+      <Card content={currentValue.length ? currentFilterState : currentState} />
     </div>
   );
 }
