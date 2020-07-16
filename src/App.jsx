@@ -94,7 +94,7 @@ export function App() {
           value={currentValue}
         />
       </label>
-      {/* <div>{currentLoad && "Loading..."}</div> */}
+
       <Card content={currentState} er={currentError} load={currentLoad} />
     </div>
   );
