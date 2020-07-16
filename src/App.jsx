@@ -7,14 +7,22 @@ export function App() {
   const [currentState, setEpisodes] = useState([]);
   const [currentPage, setPage] = useState([]);
   const [currentValue, setValue] = useState("");
+  const [currentError, setError] = useState("");
+
+  async function getData(url) {
+    const res = await fetch(
+      url ? url : "https://rickandmortyapi.com/api/episode"
+    );
+
+    if (res.error) {
+      setError(res.error);
+    }
+    const data = await res.json();
+    setEpisodes(data.results);
+    setPage(data.info);
+  }
 
   useEffect(() => {
-    async function getData() {
-      const res = await fetch("https://rickandmortyapi.com/api/episode");
-      const data = await res.json();
-      setEpisodes(data.results);
-      setPage(data.info);
-    }
     getData();
   }, []);
 
@@ -30,6 +38,7 @@ export function App() {
 
   async function handlePrevClick(e) {
     e.preventDefault();
+
     if (currentPage.prev) {
       const res = await fetch(currentPage.prev);
       const data = await res.json();
@@ -41,16 +50,12 @@ export function App() {
   async function handleChange(e) {
     setValue(e.target.value);
     if (currentValue) {
-      const episode = await fetch(
+      getData(
         `https://rickandmortyapi.com/api/episode/?name=${e.target.value}`
       );
-      const data = await episode.json();
-      setEpisodes(data.results);
     }
     if (currentValue === "") {
-      const res = await fetch("https://rickandmortyapi.com/api/episode");
-      const data = await res.json();
-      setEpisodes(data.results);
+      getData();
     }
   }
 
@@ -78,7 +83,7 @@ export function App() {
         />
       </label>
 
-      <Card content={currentState} />
+      <Card content={currentState} er={currentError} />
     </div>
   );
 }
