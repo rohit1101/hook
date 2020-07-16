@@ -1,9 +1,11 @@
 import React from "react";
 
-export function Card({ content, er }) {
+export function Card({ content, er, load }) {
   return (
     <div>
-      {er ? (
+      {load ? (
+        "Loading"
+      ) : er ? (
         <div>{er}</div>
       ) : (
         content.map((item) => {
@@ -19,3 +21,17 @@ export function Card({ content, er }) {
     </div>
   );
 }
+
+// {er ? (
+//   <div>{er}</div>
+// ) : (
+//   content.map((item) => {
+//     return (
+//       <div key={item.id}>
+//         <h1>{item.name}</h1>
+//         <p>{item.air_date}</p>
+//         <p>{item.episode}</p>
+//       </div>
+//     );
+//   })
+// )}

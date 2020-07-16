@@ -8,18 +8,22 @@ export function App() {
   const [currentPage, setPage] = useState([]);
   const [currentValue, setValue] = useState("");
   const [currentError, setError] = useState("");
+  const [currentLoad, setLoading] = useState(false);
 
   async function getData(url = `https://rickandmortyapi.com/api/episode`) {
+    setLoading(true);
     const res = await fetch(url);
     const data = await res.json();
 
     if (data.error) {
       setError(data.error);
+      setLoading(false);
     }
     if (!data.error) {
       setError("");
       setEpisodes(data.results);
       setPage(data.info);
+      setLoading(false);
     }
   }
 
@@ -30,10 +34,12 @@ export function App() {
   async function handleNextClick(e) {
     e.preventDefault();
     if (currentPage.next) {
+      setLoading(true);
       const res = await fetch(currentPage.next);
       const data = await res.json();
       setEpisodes(data.results);
       setPage(data.info);
+      setLoading(false);
     }
   }
 
@@ -41,14 +47,18 @@ export function App() {
     e.preventDefault();
 
     if (currentPage.prev) {
+      setLoading(true);
       const res = await fetch(currentPage.prev);
       const data = await res.json();
+
       setEpisodes(data.results);
       setPage(data.info);
+      setLoading(false);
     }
   }
 
   async function handleChange(e) {
+    setLoading(true);
     setValue(e.target.value);
     if (currentValue) {
       getData(
@@ -56,6 +66,7 @@ export function App() {
       );
     }
     if (currentValue === "") {
+      setLoading(true);
       getData();
     }
   }
@@ -83,8 +94,8 @@ export function App() {
           value={currentValue}
         />
       </label>
-
-      <Card content={currentState} er={currentError} />
+      {/* <div>{currentLoad && "Loading..."}</div> */}
+      <Card content={currentState} er={currentError} load={currentLoad} />
     </div>
   );
 }
