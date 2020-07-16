@@ -14,7 +14,6 @@ export function App() {
     const data = await res.json();
 
     if (data.error) {
-      console.log(data.error);
       setError(data.error);
     }
     if (!data.error) {
