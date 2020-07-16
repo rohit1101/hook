@@ -9,17 +9,19 @@ export function App() {
   const [currentValue, setValue] = useState("");
   const [currentError, setError] = useState("");
 
-  async function getData(url) {
-    const res = await fetch(
-      url ? url : "https://rickandmortyapi.com/api/episode"
-    );
-
-    if (res.error) {
-      setError(res.error);
-    }
+  async function getData(url = `https://rickandmortyapi.com/api/episode`) {
+    const res = await fetch(url);
     const data = await res.json();
-    setEpisodes(data.results);
-    setPage(data.info);
+
+    if (data.error) {
+      console.log(data.error);
+      setError(data.error);
+    }
+    if (!data.error) {
+      setError("");
+      setEpisodes(data.results);
+      setPage(data.info);
+    }
   }
 
   useEffect(() => {
