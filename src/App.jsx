@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Card } from "./Card"
-import AppBar from "@material-ui/core/AppBar"
-import Tabs from "@material-ui/core/Tabs"
-import Button from "@material-ui/core/Button"
-import ButtonGroup from "@material-ui/core/ButtonGroup"
-
-// import Tab from "@material-ui/core/Tab"
-// import Typography from "@material-ui/core/Typography"
-// import Box from "@material-ui/core/Box"
 
 import "./App.css"
 
@@ -78,45 +70,23 @@ export function App() {
   }
 
   return (
-    <div>
-      <AppBar position="sticky" color="transparent" centered>
-        <Tabs
-          variant="fullWidth"
-          // value={value}
-          // onChange={handleChange}
-          aria-label="nav tabs example"
-        >
-          <ButtonGroup
-            color="transparent"
-            aria-label="outlined primary button group"
-          >
-            <Button variant="outlined">One</Button>
-            <Button variant="outlined">Two</Button>
-            <Button variant="outlined">Three</Button>
-          </ButtonGroup>
-          {/* <LinkTab label="Page One" href="/drafts" {...a11yProps(0)} />
-          <LinkTab label="Page Two" href="/trash" {...a11yProps(1)} />
-          <LinkTab label="Page Three" href="/spam" {...a11yProps(2)} /> */}
-        </Tabs>
-      </AppBar>
+    <div className="block">
+      <h1 className="title">Rick and Morty Episode filter</h1>
+      <button className="button is-primary">Previous</button>
 
-      {/* <TabPanel value={value} index={0}>
-        Page One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Page Two
-      </TabPanel> */}
-      {/* <TabPanel>Page Three</TabPanel> */}
-
-      <label>
-        Search Episode
-        <input
-          type="text"
-          placeholder="Enter episode Name"
-          onChange={handleChange}
-          value={currentValue}
-        />
-      </label>
+      <button className="button is-primary">Next</button>
+      <div className="field has-addons">
+        <div className="control">
+          <label className="label">Search Episode</label>
+          <input
+            className="input is-info is-small is-hovered"
+            type="text"
+            placeholder="Enter episode Name"
+            onChange={handleChange}
+            value={currentValue}
+          />
+        </div>
+      </div>
 
       <Card content={currentState} er={currentError} load={currentLoad} />
     </div>
