@@ -72,9 +72,13 @@ export function App() {
   return (
     <div className="block">
       <h1 className="title">Rick and Morty Episode filter</h1>
-      <button className="button is-primary">Previous</button>
+      <button className="button is-primary" onClick={handlePrevClick}>
+        Previous
+      </button>
 
-      <button className="button is-primary">Next</button>
+      <button className="button is-primary" onClick={handleNextClick}>
+        Next
+      </button>
       <div className="field has-addons">
         <div className="control">
           <label className="label">Search Episode</label>
