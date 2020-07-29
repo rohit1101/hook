@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Card } from "./Card"
-import logo from "./logo.jpeg"
+import footer from "./Footer.module.css"
 import "./App.css"
 
 export function App() {
@@ -70,7 +70,7 @@ export function App() {
   }
 
   return (
-    <div className="container is-fluid">
+    <div>
       <div className="navbar">
         <div className="navbar-brand">
           <a href="logo" className="navbar-item ">
@@ -88,6 +88,7 @@ export function App() {
               href="https://rickandmortyapi.com/"
               className="navbar-item"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Reference
             </a>
@@ -95,53 +96,62 @@ export function App() {
         </div>
       </div>
 
-      <div
-        className="pagination is-rounded"
-        role="navigation"
-        aria-label="pagination"
-      >
-        <ul className="pagination-list">
-          <li>
-            <a
-              className="pagination-previous"
-              href="prev"
-              onClick={handlePrevClick}
-            >
-              Previous
-            </a>
-          </li>
-          <li>
-            <span className="pagination-ellipsis">&hellip;</span>
-          </li>
-          <li>
-            <a
-              href="next"
-              className="pagination-next"
-              onClick={handleNextClick}
-            >
-              Next
-            </a>
-          </li>
-        </ul>
+      <div className="container">
+        <div
+          className="pagination is-rounded"
+          role="navigation"
+          aria-label="pagination"
+        >
+          <ul className="pagination-list">
+            <li>
+              <a
+                className="pagination-previous"
+                href="prev"
+                onClick={handlePrevClick}
+              >
+                Previous
+              </a>
+            </li>
+            <li>
+              <span className="pagination-ellipsis">&hellip;</span>
+            </li>
+            <li>
+              <a
+                href="next"
+                className="pagination-next"
+                onClick={handleNextClick}
+              >
+                Next
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="field has-addons">
+          <div>
+            <label className="label">Search Episode</label>
+            <input
+              className="input is-primary is-small "
+              type="text"
+              placeholder="Enter episode Name"
+              onChange={handleChange}
+              value={currentValue}
+            />
+          </div>
+        </div>
+
+        <Card content={currentState} er={currentError} load={currentLoad} />
       </div>
+
+      <footer className="footer is-fixed">
+        <div className="content has-text-centered">
+          <p>
+            <strong>Rick and Morty Episode Finder</strong> by{" "}
+            <a href="https://rohit1101.github.io/v2">Cloud Dev</a>.
+            <span>The source code is licensed </span>
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
-
-//   <h1 className="title">Rick and Morty Episode filter</h1>
-
-//   <div className="field has-addons">
-//     <div className="control">
-//       <label className="label">Search Episode</label>
-//       <input
-//         className="input is-info is-small is-hovered"
-//         type="text"
-//         placeholder="Enter episode Name"
-//         onChange={handleChange}
-//         value={currentValue}
-//       />
-//     </div>
-//   </div>
-
-//   <Card content={currentState} er={currentError} load={currentLoad} />
-// </div>
