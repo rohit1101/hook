@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Card } from "./Card"
-import footer from "./Footer.module.css"
+
 import "./App.css"
 
 export function App() {
@@ -141,17 +141,6 @@ export function App() {
 
         <Card content={currentState} er={currentError} load={currentLoad} />
       </div>
-
-      <footer className="footer is-fixed">
-        <div className="content has-text-centered">
-          <p>
-            <strong>Rick and Morty Episode Finder</strong> by{" "}
-            <a href="https://rohit1101.github.io/v2">Cloud Dev</a>.
-            <span>The source code is licensed </span>
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
-          </p>
-        </div>
-      </footer>
     </div>
   )
 }
