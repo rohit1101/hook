@@ -25,38 +25,3 @@ export function Card({ content, er, load }) {
     </div>
   )
 }
-
-
-<div class="tile is-ancestor">
-  <div class="tile is-vertical is-8">
-    <div class="tile">
-    
-      <div class="tile is-parent is-vertical">
-        <article class="tile is-child box">
-          <!-- Put any content you want -->
-        </article>
-        <article class="tile is-child box">
-          
-        </article>
-      </div>
-
-      <div class="tile is-parent">
-        <article class="tile is-child box">
-          
-        </article>
-      </div>
-    </div>
-
-    <div class="tile is-parent">
-      <article class="tile is-child box">
-        
-      </article>
-    </div>
-  </div>
-
-  <div class="tile is-parent">
-    <article class="tile is-child box">
-      
-    </article>
-  </div>
-</div>
