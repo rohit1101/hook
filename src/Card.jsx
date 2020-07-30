@@ -11,7 +11,7 @@ export function Card({ content, er, load }) {
       ) : (
         content.map((item) => {
           return (
-            <div className="tile is-ancestor">
+            <div className="columns">
               <Tile item={item} />
             </div>
           )
