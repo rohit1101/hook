@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
-### Styled the website with Bulma.
+### Styled the website with Bulma CSS.
 In the project directory, you can run:
 
 ### `npm start`
