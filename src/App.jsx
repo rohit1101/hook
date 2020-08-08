@@ -14,7 +14,7 @@ export function App() {
     setLoading(true)
     const res = await fetch(url)
     const data = await res.json()
-
+    console.log(url)
     if (data.error) {
       setError(data.error)
       setLoading(false)
@@ -63,7 +63,7 @@ export function App() {
 
     return function (...args) {
       clearTimeout(timer)
-      console.log(...args)
+
       timer = setTimeout(() => {
         fn(...args)
       }, delay)
@@ -71,17 +71,22 @@ export function App() {
   }
 
   function handleChange(e) {
-    debounce()
     setLoading(true)
     setValue(e.target.value)
+
     if (currentValue.trim().length) {
-      getData(`https://rickandmortyapi.com/api/episode/?name=${e.target.value}`)
+      // getData(`https://rickandmortyapi.com/api/episode/?name=${e.target.value}`)
+      debounceGetData(
+        `https://rickandmortyapi.com/api/episode/?name=${e.target.value}`
+      )
     }
     if (currentValue === "") {
       setLoading(true)
       getData()
     }
   }
+
+  const debounceGetData = debounce(getData, 100)
 
   return (
     <div className="container is-family-primary is-fluid has-background-warning-light">
