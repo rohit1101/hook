@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Card } from "./Card"
-
+// import { debounce } from "./debounce"
 import "./App.css"
 
 export function App() {
@@ -57,10 +57,24 @@ export function App() {
     }
   }
 
-  async function handleChange(e) {
+  // debounce function
+  function debounce(fn, delay) {
+    let timer
+
+    return function (...args) {
+      clearTimeout(timer)
+      console.log(...args)
+      timer = setTimeout(() => {
+        fn(...args)
+      }, delay)
+    }
+  }
+
+  function handleChange(e) {
+    debounce()
     setLoading(true)
     setValue(e.target.value)
-    if (currentValue) {
+    if (currentValue.trim().length) {
       getData(`https://rickandmortyapi.com/api/episode/?name=${e.target.value}`)
     }
     if (currentValue === "") {
