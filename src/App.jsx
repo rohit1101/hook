@@ -73,7 +73,6 @@ export function App() {
     setValue(e.target.value)
 
     if (currentValue.trim().length) {
-      // getData(`https://rickandmortyapi.com/api/episode/?name=${e.target.value}`)
 
       debounceGetData(
         `https://rickandmortyapi.com/api/episode/?name=${e.target.value}`
