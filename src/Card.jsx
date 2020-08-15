@@ -2,6 +2,7 @@ import React from "react"
 import "./index.css"
 
 export function Card({ content, er, load }) {
+  let i = 0
   return (
     <div className="columns is-multiline is-centered">
       {load ? (
@@ -11,7 +12,7 @@ export function Card({ content, er, load }) {
       ) : (
         content.map((item) => {
           return (
-            <div className="column is-4 text">
+            <div key={i++} className="column is-4 text">
               <div className="box has-text-centered">
                 <h1 className="title is-4">{item.name}</h1>
                 <p className="subtitle is-5 has-text-grey-dark has-text-weight-semi-bold">

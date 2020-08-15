@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { Card } from "./Card"
-// import { debounce } from "./debounce"
 import "./App.css"
 
 export function App() {
@@ -14,7 +13,7 @@ export function App() {
     setLoading(true)
     const res = await fetch(url)
     const data = await res.json()
-    console.log(url)
+
     if (data.error) {
       setError(data.error)
       setLoading(false)
@@ -60,7 +59,6 @@ export function App() {
   // debounce function
   function debounce(fn, delay) {
     let timer
-
     return function (...args) {
       clearTimeout(timer)
 
@@ -76,6 +74,7 @@ export function App() {
 
     if (currentValue.trim().length) {
       // getData(`https://rickandmortyapi.com/api/episode/?name=${e.target.value}`)
+
       debounceGetData(
         `https://rickandmortyapi.com/api/episode/?name=${e.target.value}`
       )
@@ -86,7 +85,8 @@ export function App() {
     }
   }
 
-  const debounceGetData = debounce(getData, 100)
+  console.log("s")
+  const debounceGetData = debounce(getData, 1000)
 
   return (
     <div className="container is-family-primary is-fluid has-background-warning-light">
