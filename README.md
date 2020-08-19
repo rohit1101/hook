@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
-### useCallback() Hook for avoiding re-rendering.
+### useCallback() Hook which is based on memoizing.
 In the project directory, you can run:
 
 ### `npm start`
